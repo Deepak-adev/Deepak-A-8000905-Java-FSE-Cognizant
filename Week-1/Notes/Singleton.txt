@@ -1,0 +1,109 @@
+SINGLETON DESIGN PATTERN NOTES
+
+Definition:
+Singleton is a Creational Design Pattern that ensures:
+
+1. Only one object of a class is created.
+2. A global access point is provided to access that object.
+
+---
+
+Why Singleton?
+
+Used when only one instance should exist throughout the application.
+
+Examples:
+
+* Logger
+* Database Connection Manager
+* Configuration Manager
+* Cache Manager
+* Spring Singleton Bean
+
+---
+
+Key Characteristics
+
+1. Private Constructor
+
+   * Prevents object creation using new keyword.
+
+2. Static Instance Variable
+
+   * Stores the single object.
+
+3. Static getInstance() Method
+
+   * Provides global access to the object.
+
+---
+
+Basic Singleton Structure
+
+class Singleton {
+
+```
+private static Singleton instance;
+
+private Singleton() {
+}
+
+public static Singleton getInstance() {
+
+    if(instance == null) {
+        instance = new Singleton();
+    }
+
+    return instance;
+}
+```
+
+}
+
+---
+
+Types of Singleton
+
+1. Eager Initialization
+
+   * Object created at class loading time.
+   * Thread Safe.
+   * May waste memory if object is never used.
+
+2. Lazy Initialization
+
+   * Object created only when required.
+   * Memory Efficient.
+   * Not Thread Safe.
+
+3. Thread Safe Singleton
+
+   * Uses synchronized method.
+   * Safe in multithreaded environments.
+   * Slightly slower.
+
+4. Double Checked Locking
+
+   * Uses synchronized block and volatile keyword.
+   * Thread Safe.
+   * Better performance than synchronized method.
+
+---
+
+Advantages
+
+* Saves Memory
+* Global Access Point
+* Controlled Resource Usage
+* Prevents Multiple Instances
+* Useful for Shared Resources
+
+---
+
+Disadvantages
+
+* Harder to Unit Test
+* Global State Can Cause Tight Coupling
+* Can Become Bottleneck in Large Systems
+* Synchronization Overhead in Thread-Safe Versions
+

@@ -1,0 +1,329 @@
+SOLID is a set of 5 Object-Oriented Design Principles that help create software that is:
+
+->  Easy to maintain
+->  Easy to extend
+->  Easy to test
+->  Less coupled
+->  More reusable
+
+----------
+
+S - Single Responsibility Principle (SRP)
+
+Definition:
+A class should have only one reason to change.
+
+Bad Example:
+
+class User {
+void saveUser() {
+// Save to DB
+}
+
+```
+void sendEmail() {
+    // Send email
+}
+```
+
+}
+
+Problem:
+
+* User class handles database operations.
+* User class handles email operations.
+* Multiple responsibilities.
+
+Good Example:
+
+class User {
+String name;
+}
+
+class UserRepository {
+void save(User user) {
+// Save to DB
+}
+}
+
+class EmailService {
+void sendEmail(User user) {
+// Send Email
+}
+}
+
+Each class has one responsibility.
+
+-------
+
+O - Open/Closed Principle (OCP)
+
+Definition:
+Software entities should be:
+
+* Open for Extension
+* Closed for Modification
+
+Add new functionality without changing existing code.
+
+Bad Example:
+
+class PaymentService {
+
+```
+void pay(String type) {
+    if(type.equals("UPI")) {
+        System.out.println("UPI Payment");
+    }
+    else if(type.equals("CARD")) {
+        System.out.println("Card Payment");
+    }
+}
+```
+
+}
+
+Problem:
+Whenever a new payment method comes, we modify the class.
+
+Good Example:
+
+interface Payment {
+void pay();
+}
+
+class UPIPayment implements Payment {
+public void pay() {
+System.out.println("UPI Payment");
+}
+}
+
+class CardPayment implements Payment {
+public void pay() {
+System.out.println("Card Payment");
+}
+}
+
+Usage:
+
+Payment payment = new UPIPayment();
+payment.pay();
+
+Adding a new payment method requires a new class only.
+
+---
+
+L - Liskov Substitution Principle (LSP)
+
+Definition:
+A child class should be able to replace its parent class without breaking behavior.
+
+Bad Example:
+
+class Bird {
+void fly() {}
+}
+
+class Penguin extends Bird {
+void fly() {
+throw new UnsupportedOperationException();
+}
+}
+
+Problem:
+Penguins cannot fly.
+
+Good Example:
+
+class Bird {}
+
+interface Flyable {
+void fly();
+}
+
+class Sparrow extends Bird implements Flyable {
+public void fly() {
+System.out.println("Flying");
+}
+}
+
+class Penguin extends Bird {
+}
+
+Now substitution works correctly.
+
+---
+
+I - Interface Segregation Principle (ISP)
+
+Definition:
+Clients should not be forced to implement methods they don't need.
+
+Bad Example:
+
+interface Worker {
+void work();
+void eat();
+}
+
+class Robot implements Worker {
+
+```
+public void work() {
+    System.out.println("Working");
+}
+
+public void eat() {
+    // Not needed
+}
+```
+
+}
+
+Problem:
+Robot doesn't eat.
+
+Good Example:
+
+interface Workable {
+void work();
+}
+
+interface Eatable {
+void eat();
+}
+
+class Human implements Workable, Eatable {
+
+```
+public void work() {}
+
+public void eat() {}
+```
+
+}
+
+class Robot implements Workable {
+
+```
+public void work() {}
+```
+
+}
+
+Each class implements only required interfaces.
+
+---
+
+D - Dependency Inversion Principle (DIP)
+
+Definition:
+High-level modules should not depend on low-level modules.
+Both should depend on abstractions.
+
+Bad Example:
+
+class MySQLDatabase {
+
+```
+void connect() {
+    System.out.println("Connected");
+}
+```
+
+}
+
+class UserService {
+
+```
+private MySQLDatabase db = new MySQLDatabase();
+
+void saveUser() {
+    db.connect();
+}
+```
+
+}
+
+Problem:
+UserService is tightly coupled to MySQL.
+
+Good Example:
+
+interface Database {
+void connect();
+}
+
+class MySQLDatabase implements Database {
+
+```
+public void connect() {
+    System.out.println("MySQL Connected");
+}
+```
+
+}
+
+class PostgreSQLDatabase implements Database {
+
+```
+public void connect() {
+    System.out.println("PostgreSQL Connected");
+}
+```
+
+}
+
+class UserService {
+
+```
+private Database db;
+
+UserService(Database db) {
+    this.db = db;
+}
+
+void saveUser() {
+    db.connect();
+}
+```
+
+}
+
+Usage:
+
+Database db = new MySQLDatabase();
+UserService service = new UserService(db);
+
+Easy to switch databases.
+
+---
+
+Interview Example (Login System)
+
+SRP:
+UserController -> Handle Requests
+UserService -> Business Logic
+UserRepository -> DB Operations
+
+OCP:
+Login via Google
+Login via Email
+Login via OTP
+
+Add new login methods without changing old code.
+
+LSP:
+Any LoginProvider should work wherever LoginProvider is expected.
+
+ISP:
+Separate interfaces:
+
+* LoginProvider
+* LogoutProvider
+* RegisterProvider
+
+DIP:
+AuthService depends on AuthProvider interface,
+not GoogleAuth directly,
+not EmailAuth directly.
