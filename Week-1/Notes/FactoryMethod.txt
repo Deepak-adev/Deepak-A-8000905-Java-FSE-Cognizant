@@ -1,0 +1,81 @@
+FACTORY METHOD PATTERN
+
+Definition:
+Factory Method is a creational design pattern used to create objects without exposing the object creation logic to the client. Instead of creating objects using the new keyword directly, a factory class is responsible for creating and returning the required object.
+
+Why do we need it?
+When an application has multiple related classes and the object to be created depends on certain conditions, creating objects directly in the client code can make the program difficult to maintain. Factory Method helps by separating object creation from object usage.
+
+Example:
+Consider a notification system that supports Email and SMS notifications.
+
+Without Factory Method:
+
+if(type.equals("EMAIL"))
+    notifier = new EmailNotifier();
+else if(type.equals("SMS"))
+    notifier = new SMSNotifier();
+
+Every time a new notification type is added, the client code must be modified.
+
+With Factory Method:
+
+Notifier notifier =
+    NotifierFactory.createNotifier("EMAIL");
+
+The client only requests an object from the factory and does not know how it is created.
+
+Components:
+
+1. Product
+   Common interface or abstract class.
+
+2. Concrete Product
+   Classes that implement the product interface.
+
+3. Factory
+   Creates and returns objects based on input.
+
+4. Client
+   Uses the factory to obtain objects.
+
+Sample Structure:
+
+Notifier
+   |
+   |---- EmailNotifier
+   |
+   |---- SMSNotifier
+
+NotifierFactory
+        |
+      Client
+
+Advantages:
+- Reduces coupling between client and implementation classes.
+- Makes code easier to maintain.
+- Object creation logic is centralized.
+- New product types can be added with minimal changes.
+
+Disadvantages:
+- Additional classes are required.
+- Factory code may need modification when new products are introduced.
+
+Real World Applications:
+- Notification systems
+- Payment gateways
+- Database connection managers
+- Vehicle management systems
+- Logistics applications
+
+Factory Method vs Builder:
+
+Factory Method:
+- Creates a single object.
+- Focuses on selecting the correct object type.
+- Example: Creating EmailNotifier or SMSNotifier.
+
+Builder:
+- Creates complex objects step by step.
+- Focuses on object construction.
+- Example: Building a House object with walls, doors and windows.
