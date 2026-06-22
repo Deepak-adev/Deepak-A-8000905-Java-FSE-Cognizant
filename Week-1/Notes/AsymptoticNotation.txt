@@ -1,0 +1,57 @@
+1. Understand Asymptotic Notation
+
+Big O Notation
+
+Big O notation is a mathematical representation used to describe the performance and efficiency of an algorithm as the input size increases. It measures how the execution time or memory usage of an algorithm grows relative to the size of the input data.
+
+Big O helps developers:
+- Compare different algorithms.
+- Predict performance for large datasets.
+- Choose the most efficient algorithm for a given problem.
+- Analyze scalability and resource usage.
+
+Common Time Complexities:
+- O(1)  : Constant Time
+- O(log n) : Logarithmic Time
+- O(n)  : Linear Time
+- O(n log n) : Linearithmic Time
+- O(n²) : Quadratic Time
+
+Search Operation Scenarios
+
+1. Best Case Scenario
+The best case occurs when the desired element is found immediately.
+
+Example:
+- In Linear Search, the element is found at the first position.
+- In Binary Search, the element is found at the middle position on the first comparison.
+
+Time Complexity:
+- Linear Search: O(1)
+- Binary Search: O(1)
+
+2. Average Case Scenario
+The average case represents the typical performance of an algorithm over all possible inputs.
+
+Example:
+- In Linear Search, the element is usually found somewhere in the middle of the array.
+- In Binary Search, the search space is repeatedly divided until the element is found.
+
+Time Complexity:
+- Linear Search: O(n)
+- Binary Search: O(log n)
+
+3. Worst Case Scenario
+The worst case occurs when the element is located at the last position or is not present in the data structure.
+
+Example:
+- In Linear Search, every element must be checked.
+- In Binary Search, the maximum number of divisions is required before concluding the result.
+
+Time Complexity:
+- Linear Search: O(n)
+- Binary Search: O(log n)
+
+Conclusion
+
+Big O notation is an important tool for evaluating algorithm efficiency. For search operations, Binary Search is generally more efficient than Linear Search for large datasets because it reduces the search space by half during each step, resulting in logarithmic time complexity.

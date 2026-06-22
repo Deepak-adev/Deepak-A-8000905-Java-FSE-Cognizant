@@ -1,0 +1,23 @@
+Analysis
+
+Comparison of Linear Search and Binary Search
+
+Linear Search:
+- Linear Search checks each element in the array one by one until the required product is found.
+- It does not require the data to be sorted.
+- Time Complexity:
+  • Best Case: O(1) – The product is found at the first position.
+  • Average Case: O(n) – The product is found somewhere in the middle.
+  • Worst Case: O(n) – The product is found at the last position or is not present.
+
+Binary Search:
+- Binary Search repeatedly divides the search space into two halves.
+- It requires the array to be sorted before searching.
+- Time Complexity:
+  • Best Case: O(1) – The product is found at the middle position on the first comparison.
+  • Average Case: O(log n)
+  • Worst Case: O(log n)
+
+Conclusion
+
+Binary Search is more suitable for an e-commerce platform because it provides much faster search performance for large datasets. While Linear Search is simple to implement and works on unsorted data, its performance decreases as the number of products increases. Binary Search significantly reduces the number of comparisons by dividing the search space in half during each step, making it ideal for platforms that manage thousands or millions of products. Therefore, Binary Search is the preferred choice when the product data is maintained in sorted order.
