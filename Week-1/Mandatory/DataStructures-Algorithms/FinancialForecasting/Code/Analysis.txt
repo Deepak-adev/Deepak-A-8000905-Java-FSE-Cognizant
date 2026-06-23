@@ -1,0 +1,53 @@
+Analysis
+
+Time Complexity
+
+The recursive algorithm makes one recursive call for each year until the base case (years == 0) is reached.
+
+• For n years, there are n recursive calls.
+• Each recursive call performs a constant amount of work.
+
+Time Complexity: O(n)
+
+This means the execution time increases linearly with the number of years being forecasted.
+
+The recursion stack also stores each function call until the base case is reached.
+
+Space Complexity: O(n)
+
+This is because n recursive calls are stored in memory before they begin returning their results.
+
+Optimization
+
+The recursive solution can be optimized to reduce computation time and memory usage, especially when dealing with large forecasting periods.
+
+1. Memoization
+
+• Store previously computed results in a data structure such as an array or HashMap.
+• When the same value is needed again, retrieve it instead of recalculating it.
+• This avoids repeated computations and improves performance.
+
+2. Iterative Approach
+
+• Replace recursion with a loop.
+• Eliminates the need for recursive function calls.
+• Reduces space complexity from O(n) to O(1).
+• Generally more efficient for large inputs.
+
+3. Mathematical Formula
+
+• Future values can be calculated directly using the compound growth formula:
+
+  Future Value = Present Value × (1 + Growth Rate)^Years
+
+• Java provides the Math.pow() method to efficiently compute powers.
+• This approach avoids multiple recursive calls and simplifies the calculation.
+
+Benefits of Optimization
+
+• Reduces execution time for large forecasting periods.
+• Minimizes memory consumption.
+• Prevents stack overflow errors caused by deep recursion.
+• Improves the overall efficiency and scalability of the financial forecasting application.
+
+Therefore, while the recursive approach is easy to understand and implement, iterative methods, memoization, or direct mathematical calculations are preferred for handling larger datasets and long-term financial forecasts.

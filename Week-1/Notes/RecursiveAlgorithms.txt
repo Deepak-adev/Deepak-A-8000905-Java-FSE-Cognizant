@@ -1,0 +1,30 @@
+1. Understand Recursive Algorithms
+
+Recursion is a programming technique in which a function or method calls itself to solve a smaller instance of the same problem. It is commonly used when a problem can be divided into smaller, similar subproblems. A recursive algorithm continues calling itself until it reaches a stopping condition known as the base case. Without a base case, the recursion would continue indefinitely and result in a stack overflow error.
+
+A recursive solution generally consists of two parts:
+
+• Base Case: The condition that stops further recursive calls.
+• Recursive Case: The part where the method calls itself with a reduced problem size.
+
+Recursion simplifies certain problems by reducing complex logic into smaller, more manageable steps. Instead of handling all calculations at once, the problem is repeatedly broken down until it becomes simple enough to solve directly. This often leads to cleaner and more readable code.
+
+In financial forecasting, future values are frequently calculated based on the current value and a growth rate over a number of years. Since each year's value depends on the value of the previous year, recursion provides a natural way to model this relationship. The algorithm can repeatedly calculate the value for the next year until the required forecasting period is reached.
+
+For example, if an investment grows by 10% annually, the value after one year is calculated from the current value. The value after two years is calculated from the value after one year, and so on. This repeated dependency makes recursion an appropriate approach for forecasting future financial values.
+
+The recursive relation for financial forecasting can be represented as:
+
+Future Value(n) = Future Value(n − 1) × (1 + Growth Rate)
+
+with the base case:
+
+Future Value(0) = Current Value
+
+Advantages of Recursion:
+• Simplifies complex problems by breaking them into smaller subproblems.
+• Produces clean and easy-to-understand code.
+• Closely matches the mathematical definition of many problems.
+• Useful for problems involving repeated calculations and hierarchical structures.
+
+Thus, recursion offers a simple and intuitive approach for implementing financial forecasting models by repeatedly applying growth rates until the desired forecast period is reached.
