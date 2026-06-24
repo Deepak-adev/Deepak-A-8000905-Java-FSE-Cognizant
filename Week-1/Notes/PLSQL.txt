@@ -1,0 +1,195 @@
+PL/SQL NOTES
+
+Introduction
+------------
+PL/SQL (Procedural Language/Structured Query Language) is Oracle's procedural extension of SQL. It combines the data manipulation capabilities of SQL with procedural programming constructs such as variables, loops, conditions, procedures, functions, and exception handling. PL/SQL enables developers to write complex database applications efficiently.
+
+Features of PL/SQL
+------------------
+1. Block-structured language.
+2. Supports variables and constants.
+3. Provides exception handling.
+4. Supports procedures, functions, packages, and triggers.
+5. Improves performance by reducing network traffic.
+6. Allows modular and reusable code.
+
+Structure of a PL/SQL Block
+---------------------------
+
+DECLARE
+   -- Declaration Section
+BEGIN
+   -- Executable Statements
+EXCEPTION
+   -- Exception Handling Section
+END;
+/
+
+The DECLARE section is optional. The BEGIN and END sections are mandatory. The EXCEPTION section is used for handling runtime errors.
+
+Variables in PL/SQL
+-------------------
+Variables are used to store data temporarily during program execution.
+
+Example:
+
+DECLARE
+   v_name VARCHAR2(30);
+   v_age NUMBER;
+BEGIN
+   v_name := 'Deepak';
+   v_age := 20;
+
+   DBMS_OUTPUT.PUT_LINE(v_name);
+   DBMS_OUTPUT.PUT_LINE(v_age);
+END;
+/
+
+Conditional Statements
+----------------------
+PL/SQL provides IF statements for decision making.
+
+Syntax:
+
+IF condition THEN
+   statements;
+ELSIF condition THEN
+   statements;
+ELSE
+   statements;
+END IF;
+
+Loops
+-----
+Loops are used to execute a set of statements repeatedly.
+
+FOR Loop:
+
+BEGIN
+   FOR i IN 1..5 LOOP
+      DBMS_OUTPUT.PUT_LINE(i);
+   END LOOP;
+END;
+/
+
+WHILE Loop:
+
+DECLARE
+   i NUMBER := 1;
+BEGIN
+   WHILE i <= 5 LOOP
+      DBMS_OUTPUT.PUT_LINE(i);
+      i := i + 1;
+   END LOOP;
+END;
+/
+
+Cursors
+-------
+A cursor is a pointer to the result set returned by a query.
+
+Types of Cursors:
+1. Implicit Cursor
+2. Explicit Cursor
+
+Example of Explicit Cursor:
+
+DECLARE
+   CURSOR c_emp IS
+      SELECT employee_id FROM employees;
+BEGIN
+   FOR rec IN c_emp LOOP
+      DBMS_OUTPUT.PUT_LINE(rec.employee_id);
+   END LOOP;
+END;
+/
+
+Exception Handling
+------------------
+Exception handling allows a program to respond to runtime errors gracefully.
+
+Example:
+
+BEGIN
+   statements;
+EXCEPTION
+   WHEN NO_DATA_FOUND THEN
+      DBMS_OUTPUT.PUT_LINE('No data found');
+   WHEN OTHERS THEN
+      DBMS_OUTPUT.PUT_LINE('Unexpected error');
+END;
+/
+
+Stored Procedures
+-----------------
+A procedure is a named PL/SQL block that performs a specific task.
+
+Example:
+
+CREATE OR REPLACE PROCEDURE greet
+IS
+BEGIN
+   DBMS_OUTPUT.PUT_LINE('Welcome');
+END;
+/
+
+Functions
+---------
+A function is a PL/SQL block that returns a value.
+
+Example:
+
+CREATE OR REPLACE FUNCTION square_num(n NUMBER)
+RETURN NUMBER
+IS
+BEGIN
+   RETURN n*n;
+END;
+/
+
+Triggers
+--------
+A trigger is a stored program that automatically executes when a database event occurs.
+
+Example:
+
+CREATE OR REPLACE TRIGGER trg_emp
+BEFORE INSERT ON employees
+FOR EACH ROW
+BEGIN
+   DBMS_OUTPUT.PUT_LINE('Employee inserted');
+END;
+/
+
+Packages
+--------
+A package is a collection of related procedures, functions, variables, and cursors stored together.
+
+Advantages:
+- Code reusability
+- Better performance
+- Easy maintenance
+- Improved security
+
+Transaction Control Statements
+------------------------------
+COMMIT   : Permanently saves changes.
+ROLLBACK : Undoes changes.
+SAVEPOINT: Creates a point to which rollback can occur.
+
+Procedure vs Function
+---------------------
+
+Procedure
+- May or may not return a value.
+- Invoked using EXEC command.
+- Can have IN, OUT, and IN OUT parameters.
+
+Function
+- Must return a value.
+- Can be used in SQL statements.
+- Return type is mandatory.
+
+Conclusion
+----------
+PL/SQL enhances SQL by providing procedural programming capabilities. It is widely used in Oracle databases for developing enterprise applications, implementing business logic, and improving database performance.
