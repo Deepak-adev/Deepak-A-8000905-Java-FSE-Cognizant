@@ -1,0 +1,235 @@
+What is JUnit?
+--------------
+JUnit is a Java testing framework used to write and execute unit test cases.
+It helps verify that individual methods or classes work correctly.
+
+Advantages
+----------
+• Automates testing
+• Detects bugs early
+• Improves code quality
+• Supports regression testing
+• Easy integration with Maven and IDEs
+
+JUnit Annotations
+-----------------
+
+@Test
+- Marks a method as a test case.
+
+@Before
+- Executes before each test method.
+- Used for initialization.
+
+@After
+- Executes after each test method.
+- Used for cleanup.
+
+@BeforeClass
+- Executes once before all test methods.
+- Method must be static.
+
+@AfterClass
+- Executes once after all test methods.
+- Method must be static.
+
+Assertions
+----------
+
+assertEquals(expected, actual)
+- Checks if two values are equal.
+
+assertTrue(condition)
+- Checks if condition is true.
+
+assertFalse(condition)
+- Checks if condition is false.
+
+assertNull(object)
+- Checks if object is null.
+
+assertNotNull(object)
+- Checks if object is not null.
+
+assertSame(expected, actual)
+- Checks if two references point to the same object.
+
+assertNotSame(expected, actual)
+- Checks if two references are different.
+
+AAA Pattern
+-----------
+
+Arrange
+- Prepare test data.
+
+Act
+- Execute the method.
+
+Assert
+- Verify the result.
+
+Example
+
+Arrange
+int a = 10;
+int b = 20;
+
+Act
+int result = calculator.add(a, b);
+
+Assert
+assertEquals(30, result);
+
+JUnit Folder Structure
+----------------------
+
+Project
+│
+├── pom.xml
+│
+└── src
+    ├── main
+    │   └── java
+    │       └── Calculator.java
+    │
+    └── test
+        └── java
+            ├── SampleTest.java
+            ├── AssertionsTest.java
+            └── CalculatorTest.java
+
+JUnit Maven Dependency
+----------------------
+
+<dependency>
+    <groupId>junit</groupId>
+    <artifactId>junit</artifactId>
+    <version>4.13.2</version>
+    <scope>test</scope>
+</dependency>
+
+Commands
+--------
+
+Run all tests
+
+mvn test
+
+Run one test
+
+mvn -Dtest=SampleTest test
+
+====================================================
+MOCKITO
+====================================================
+
+What is Mockito?
+----------------
+Mockito is a Java framework used to create mock objects for unit testing.
+
+Why Mockito?
+------------
+Sometimes a class depends on:
+• Database
+• REST API
+• External Service
+
+Mockito creates fake objects so the actual dependency is not required.
+
+Important Terms
+---------------
+
+Mock
+----
+A fake object created by Mockito.
+
+Example
+
+ExternalApi api = mock(ExternalApi.class);
+
+Stubbing
+--------
+Defines what a mock should return.
+
+Example
+
+when(api.getData()).thenReturn("Mock Data");
+
+Verification
+------------
+Checks whether a method was called.
+
+Example
+
+verify(api).getData();
+
+Mockito Methods
+---------------
+
+mock(Class.class)
+- Creates a mock object.
+
+when(...).thenReturn(...)
+- Stubs a method.
+
+verify(...)
+- Verifies method invocation.
+
+times(n)
+- Checks number of method calls.
+
+Example
+
+verify(api, times(2)).getData();
+
+never()
+- Ensures method was never called.
+
+Example
+
+verify(api, never()).getData();
+
+Mockito Folder Structure
+------------------------
+
+Project
+│
+├── pom.xml
+│
+└── src
+    ├── main
+    │   └── java
+    │       ├── ExternalApi.java
+    │       └── MyService.java
+    │
+    └── test
+        └── java
+            ├── MyServiceTest.java
+            └── VerifyInteractionTest.java
+
+Mockito Maven Dependency
+------------------------
+
+<dependency>
+    <groupId>org.mockito</groupId>
+    <artifactId>mockito-core</artifactId>
+    <version>5.12.0</version>
+    <scope>test</scope>
+</dependency>
+
+Commands
+--------
+
+Run all tests
+
+mvn test
+
+Run Exercise 1
+
+mvn -Dtest=MyServiceTest test
+
+Run Exercise 2
+
+mvn -Dtest=VerifyInteractionTest test
+
